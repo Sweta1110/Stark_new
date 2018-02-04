@@ -177,7 +177,7 @@ public class Explore extends AppCompatActivity implements SearchView.OnQueryText
                         MyData data = new MyData(object.getInt("id"), object.getString("description"),
                                 object.getString("image"), object.getString("longDesc"), table_of_contents);
                         data_list.add(data);
-                    }
+                }
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {

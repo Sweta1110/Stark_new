@@ -53,9 +53,18 @@
             android:name=".HelpAndFeedback"
             android:configChanges="orientation|screenSize"
             android:theme="@style/CustomTheme" />
-        <activity android:name=".CourseDetail"
+        <activity
+            android:name=".CourseDetail"
             android:configChanges="orientation|screenSize"
             android:theme="@style/CustomTheme" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".VideoPlayerActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
