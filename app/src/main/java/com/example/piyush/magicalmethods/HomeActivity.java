@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -32,6 +33,15 @@ public class HomeActivity extends AppCompatActivity {
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Home");
+
+        // Temp on click listener
+        Button openCourseDetails = findViewById(R.id.open_new_course_details);
+        openCourseDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, CourseDetailsNew.class));
+            }
+        });
 
         // Create the AccountHeader
         headerResult= new AccountHeaderBuilder()

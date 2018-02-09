@@ -7,13 +7,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Created by USER
  */
 
+import com.beust.klaxon.JsonObject;
 import com.example.piyush.magicalmethods.databinding.ActivityCourseDetailBinding;
+import com.example.piyush.magicalmethods.mmget.MMfromServer;
+import com.example.piyush.magicalmethods.mmget.MMfromServerListener;
+
+import org.jetbrains.annotations.NotNull;
 
 public class CourseDetail extends AppCompatActivity {
     Button button;
@@ -32,10 +36,29 @@ public class CourseDetail extends AppCompatActivity {
 
         binding.setMyData(myData);
         binding.setPresenter(this);
+
+        MMfromServer mMfromServer = new MMfromServer(this, new MMfromServerListener() {
+            @Override
+            public void onDownloadComplete(@NotNull JsonObject json) {
+                System.out.println(json.toJsonString(true));
+            }
+        });
+        mMfromServer.get(MMfromServer.Companion.getREQUEST_USER_COURSE_LIST(), "asaouetsfnvpsq");
+        mMfromServer.execute();
+
+        MMfromServer mMfromServerm = new MMfromServer(this, new MMfromServerListener() {
+            @Override
+            public void onDownloadComplete(@NotNull JsonObject json) {
+                System.out.println(json.toJsonString(true));
+            }
+        });
+        mMfromServerm.get(MMfromServer.Companion.getREQUEST_USER_COURSE_PURCHASED(), "asaouetsfnvpsq");
+        mMfromServerm.execute();
     }
 
-    void openVideoPlayerActivity() {
-        Intent intent = new Intent(CourseDetail.this, VideoPlayerActivity.class);
+    private void openVideoPlayerActivity() {
+        Intent intent = new Intent(CourseDetail.this, PaymentWebviewActivity.class);
+        intent.putExtra("courseKey", "asaouetsfnvpsq");
         startActivity(intent);
     }
 

@@ -1,6 +1,7 @@
 package com.example.piyush.magicalmethods;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.piyush.magicalmethods.lib.ManageSession;
+import com.example.piyush.magicalmethods.mmget.mcrypt;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -35,6 +38,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import kotlin.Pair;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -49,6 +53,7 @@ public class Explore extends AppCompatActivity implements SearchView.OnQueryText
     private CustomAdapter adapter;
     private List<MyData> data_list;
     ProgressBar mLoadingProgress;
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,14 +161,23 @@ public class Explore extends AppCompatActivity implements SearchView.OnQueryText
         @SuppressLint("StaticFieldLeak") AsyncTask<Integer, Void, Void> task = new AsyncTask<Integer, Void, Void>() {
             @Override
             protected Void doInBackground(Integer... integers) {
+                ManageSession session = new ManageSession(context);
+                Pair<String, String> sessionData = session.getSession();
+                String mcryptKey = sessionData.getFirst();
+                String sessionId = sessionData.getSecond();
+
+
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
-                        .url("http://mm.s-ct.asia/arrayOut.php?id=" + id)
+                        .url("http://mm.s-ct.asia/arrayOut.php?id=" + id + "&session_id=" + sessionId)
                         .build();
                 try {
                     Response response = client.newCall(request).execute();
 
-                    JSONArray array = new JSONArray(response.body().string());
+                    mcrypt mcrypt = new mcrypt(mcryptKey);
+                    String resp = new String(mcrypt.decrypt(response.body().string()));
+
+                    JSONArray array = new JSONArray(resp);
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject object = array.getJSONObject(i);
                         int tocNum = object.getJSONArray("toc").length();
@@ -181,6 +195,8 @@ public class Explore extends AppCompatActivity implements SearchView.OnQueryText
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 return null;

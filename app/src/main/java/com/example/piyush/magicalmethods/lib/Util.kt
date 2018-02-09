@@ -85,7 +85,7 @@ class Util {
             // @TODO Create a class to handle preference manager
             return country
         }
-  
+
         fun getState() {
             // @TODO Implement getstate
         }

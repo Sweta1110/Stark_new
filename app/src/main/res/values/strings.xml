@@ -21,4 +21,7 @@
     <string name="table_of_contents">Table of Contents(ToC) :</string>
     <string name="course_description">Course Description</string>
     <string name="error_msg">Error while loading data!</string>
+    <string name="title_activity_payment_response_activity">PaymentResponseActivty</string>
+    <string name="title_activity_course_details_new">CourseDetailsNew</string>
+    <string name="buy_now">Buy Now</string>
 </resources>

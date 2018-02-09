@@ -58,11 +58,36 @@
             android:configChanges="orientation|screenSize"
             android:theme="@style/CustomTheme" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".VideoPlayerActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:screenOrientation="landscape">
+        <activity
+            android:name=".VideoPlayerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PaymentWebviewActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".PaymentResponseActivity"
+            android:label="@string/title_activity_payment_response_activity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <data android:scheme="payment_response" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CourseDetailsNew"
+            android:label="@string/title_activity_course_details_new"
+            android:theme="@style/AppTheme.Appcompat">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

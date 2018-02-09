@@ -1,167 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.piyush.magicalmethods.CourseDetail">
 
 
-        <data>
+    <data>
 
-            <variable
-                name="MyData"
-                type="com.example.piyush.magicalmethods.MyData" />
-        </data>
+        <variable
+            name="MyData"
+            type="com.example.piyush.magicalmethods.MyData" />
+        <variable
+            name="presenter"
+            type="com.example.piyush.magicalmethods.CourseDetail" />
+    </data>
 
 
-        <ScrollView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="@android:color/white">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            android:background="@android:color/white">
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+
+            <ImageView
+                android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="200dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:adjustViewBounds="true"
+                android:imageUrl="@{MyData.image_link}"
+                android:scaleType="centerCrop" />
 
 
-                <ImageView
-                    android:id="@+id/image"
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardview1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                app:cardBackgroundColor="@color/colorPrimary">
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout2"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:adjustViewBounds="true"
-                    android:imageUrl="@{MyData.image_link}"
-                    android:scaleType="centerCrop" />
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="12dp"
+
+                        android:fontFamily="monospace"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:paddingTop="8dp"
+                        android:text="@{MyData.description}"
+                        android:textColor="@color/cardview_light_background"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
 
-                <android.support.v7.widget.CardView
-                    android:id="@+id/cardview1"
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardview2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="3dp"
-                    app:cardUseCompatPadding="true"
-                    app:cardBackgroundColor="@color/colorPrimary">
+                    android:layout_height="match_parent">
 
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout2"
+                    <TextView
+                        android:id="@+id/courseDescHeading"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
 
-                        <TextView
-                            android:id="@+id/description"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="12dp"
-                            android:layout_marginTop="12dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="monospace"
+                        android:text="@string/course_description"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-                            android:fontFamily="monospace"
-                            android:paddingBottom="8dp"
-                            android:paddingLeft="16dp"
-                            android:paddingRight="16dp"
-                            android:paddingTop="8dp"
-                            android:text="@{MyData.description}"
-                            android:textColor="@color/cardview_light_background"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-
-                    </RelativeLayout>
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/cardview2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="3dp"
-                    app:cardUseCompatPadding="true">
-
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout3"
+                    <TextView
+                        android:id="@+id/longDesc"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/courseDescHeading"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:paddingBottom="5dp"
+                        android:text="@{MyData.longDesc}"
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp" />
 
-                        <TextView
-                            android:id="@+id/courseDescHeading"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                    <TextView
+                        android:id="@+id/tocHeading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/longDesc"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@android:color/white"
+                        android:text="@string/table_of_contents"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="16dp"
-                            android:fontFamily="monospace"
-                            android:text="@string/course_description"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/table_of_contents"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-                        <TextView
-                            android:id="@+id/longDesc"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/courseDescHeading"
-                            android:layout_marginEnd="20dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="16dp"
-                            android:paddingBottom="5dp"
-                            android:text="@{MyData.longDesc}"
-                            android:textColor="@android:color/black"
-                            android:textSize="15sp" />
+                        android:layout_below="@id/tocHeading"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="monospace"
+                        android:paddingBottom="5dp"
+                        android:text="@{MyData.table_of_contents}"
 
-                        <TextView
-                            android:id="@+id/tocHeading"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/longDesc"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="16dp"
-                            android:background="@android:color/white"
-                            android:text="@string/table_of_contents"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
 
-                        <TextView
-                            android:id="@+id/table_of_contents"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/table_of_contents"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginLeft="36dp"
+                        android:layout_marginRight="36dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/button_states"
+                        android:elevation="10dp"
+                        android:text="@string/start_course"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="24sp"
+                        android:onClick="@{presenter::onStartCourseClick}"/>
 
-                            android:layout_below="@id/tocHeading"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="8dp"
-                            android:fontFamily="monospace"
-                            android:paddingBottom="5dp"
-                            android:text="@{MyData.table_of_contents}"
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
 
-                            android:textColor="@android:color/black"
-                            android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
 
-                        <Button
-                            android:id="@+id/button"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/table_of_contents"
-                            android:layout_marginBottom="16dp"
-                            android:layout_marginLeft="36dp"
-                            android:layout_marginRight="36dp"
-                            android:layout_marginTop="16dp"
-                            android:background="@drawable/button_states"
-                            android:elevation="10dp"
-                            android:text="@string/start_course"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="24sp" />
-
-                    </RelativeLayout>
-                </android.support.v7.widget.CardView>
-
-            </LinearLayout>
-        </ScrollView>
-
-    </layout>
+</layout>

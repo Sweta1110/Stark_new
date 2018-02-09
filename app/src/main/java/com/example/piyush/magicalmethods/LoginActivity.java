@@ -1,6 +1,7 @@
 package com.example.piyush.magicalmethods;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Handler;
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
     private ProgressDialog progressDialog;
+    private Context context = this;
 
     private Button btnSignup, btnLogin, btnReset;
 
@@ -35,11 +37,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
-        /*if (auth.getCurrentUser() != null) {
+        if (auth.getCurrentUser() != null) {
             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
             finish();
-        }*/
+        }
 
 
         progressDialog = new ProgressDialog(this);
@@ -49,9 +53,6 @@ public class LoginActivity extends AppCompatActivity {
         btnSignup = (Button) findViewById(R.id.rgt_btn1);
         btnLogin = (Button) findViewById(R.id.btn_Login);
         btnReset = (Button) findViewById(R.id.frg_password1);
-
-        //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance();
 
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,12 +79,17 @@ public class LoginActivity extends AppCompatActivity {
                 final String password = inputPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Enter email address!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Enter password!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (password.length() < 6) {
+                    Toast.makeText(context, "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -95,17 +101,10 @@ public class LoginActivity extends AppCompatActivity {
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-
                                 if (!task.isSuccessful()) {
-                                    if (password.length() < 6) {
-                                        progressDialog.cancel();
-                                        Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
-                                        return;
-                                    } else {
-                                        progressDialog.cancel();
-                                        Exception ex=task.getException();
-                                        Toast.makeText(LoginActivity.this, "Authentication failed" + ex.getMessage(), Toast.LENGTH_LONG).show();
-                                    }
+                                    progressDialog.cancel();
+                                    Exception ex = task.getException();
+                                    Toast.makeText(context, "Authentication failed: " + ex.getMessage(), Toast.LENGTH_LONG).show();
                                 } else {
                                     progressDialog.setMessage("Logging in...");
                                     progressDialog.show();
@@ -118,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkIfEmailVerified() {
-        FirebaseUser users = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser users = auth.getCurrentUser();
         boolean emailVerified = users.isEmailVerified();
         if (!emailVerified) {
             progressDialog.cancel();
@@ -133,7 +132,6 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 }
             }, 1500);
-
         }
     }
 
