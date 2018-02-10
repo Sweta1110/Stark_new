@@ -24,7 +24,7 @@
                 android:layout_marginTop="32dp"
                 android:background="@null"
                 android:contentDescription="@null"
-                android:src="@drawable/logocopy1" />
+                android:src="@drawable/logomm" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_email1"
@@ -79,10 +79,10 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="32dp"
-                android:background="@color/colorAccent"
+                android:background="@color/colorIcons"
                 android:onClick="login"
                 android:text="@string/btn_Login"
-                android:textColor="@color/colorIcons" />
+                android:textColor="@color/colorPrimaryText" />
 
             <Button
                 android:id="@+id/frg_password1"
@@ -94,7 +94,7 @@
                 android:background="@null"
                 android:onClick="reset"
                 android:text="@string/Forget_Password"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorIcons" />
 
             <Button
                 android:id="@+id/rgt_btn1"

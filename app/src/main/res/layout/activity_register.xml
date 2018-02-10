@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageView1"
@@ -22,7 +21,7 @@
             android:layout_marginTop="25dp"
             android:background="@null"
             android:contentDescription="@null"
-            app:srcCompat="@drawable/logocopy1" />
+            app:srcCompat="@drawable/logomm" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_email2"
@@ -48,9 +47,9 @@
             android:id="@+id/input_layout_password2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
             android:layout_below="@+id/input_layout_email2"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            app:passwordToggleEnabled="true">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/password"
@@ -75,7 +74,7 @@
             android:layout_marginTop="16dp"
             android:background="@null"
             android:text="@string/clicking_register"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorIcons"
             android:textSize="16sp" />
 
         <Button
@@ -88,10 +87,10 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="38dp"
-            android:background="@color/colorAccent"
+            android:background="@color/colorIcons"
             android:onClick="login"
             android:text="@string/btn_register"
-            android:textColor="@color/colorIcons" />
+            android:textColor="@color/colorPrimaryText" />
 
         <Button
             android:id="@+id/sign_in"

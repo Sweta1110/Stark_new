@@ -12,7 +12,7 @@
     <string name="btn_signin">"Already Registered. Login me!"</string>
     <string name="give_id">"Enter your registered Email-id below"</string>
     <string name="btn_reset">"Reset Password"</string>
-    <string name="btn_back">"Back"</string>
+    <string name="btn_back">"<![CDATA[<< Back]]>"</string>
     <string name="let_s_get_to_know_you">Let\'s get to know you</string>
     <string name="name">Name:</string>
     <string name="city">City:</string>

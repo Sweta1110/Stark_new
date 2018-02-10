@@ -46,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         // Create the AccountHeader
         headerResult= new AccountHeaderBuilder()
                 .withActivity(this)
-                .withHeaderBackground(R.drawable.header)
+                .withHeaderBackground(R.drawable.bg_gradient)
                 .addProfiles(
                         new ProfileDrawerItem().withName("Tony Stark").withEmail("ironman@jarvis.com").withIcon(getResources().getDrawable(R.drawable.tony_stark))
 
